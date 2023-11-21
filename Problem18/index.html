@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            border: 5px solid black;
+            padding: 30px;
+        }
+        input{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div  id="box">
+        <label for="">Enter String</label><input id="mainStr" type="text"><br>
+        <label for="">Enter Sub String</label><input id="subStr" type="text"><br>
+        <label for="">Replace with String</label><input id="replaceStr" type="text"><br>
+
+        <input type="radio" id="search" name="radiobtn" value="searchSub"> <label for="">Search substring in main String</label>
+        <input type="radio" id="toupper" name="radiobtn" value="upCase"> <label for="">To Upper Case</label>
+        <input type="radio" id="tolower" name="radiobtn" value="lowCase"><label for="">To Lower Case</label>
+        <input type="radio" id="trim" name="radiobtn" value="trimS"><label for="">Trim spaces</label>
+        <input type="radio" id="concat" name="radiobtn" value="concatS"><label for="">Concatenate</label>
+        <input type="radio" id="replace" name="radiobtn" value="replaceS"><label for="">replace</label><br>
+       
+        <button type="button" id="submit">Submit Query</button>
+
+    </div>
+</body>
+
+<script>
+   let submitQuery = document.getElementById("submit");
+   submitQuery.addEventListener("click",()=>{
+
+      let givenStr=document.getElementById("mainStr").value;
+      let givenSubStr=document.getElementById("subStr").value;
+      let replaceMainStrWith=document.getElementById("replaceStr").value;
+
+      console.log(givenStr);
+
+     /*  let searchStr = document.getElementById("search");
+      let convertToUpper = document.getElementById("toupper");
+      let convertToLower = document.getElementById("tolower");
+      let trimSpace = document.getElementById("trim");
+      let concatStr = document.getElementById("concat");
+      let replaceStr = document.getElementById("replace"); */
+      var calc;
+      var arr=document.getElementsByName("radiobtn");
+      for(var ob of arr){
+        if(ob.checked){
+          calc=ob.value
+        }
+      }
+     console.log(calc);
+     switch(calc){
+       
+        case "searchSub":
+        console.log(givenStr.includes(givenSubStr));
+        break;
+
+        case "upCase":
+        givenStr= givenStr.toUpperCase();
+        document.getElementById("mainStr").value=givenStr;
+        break;
+
+        case "lowCase":
+        givenStr= givenStr.toLowerCase();
+        document.getElementById("mainStr").value=givenStr;
+        break;
+
+        case "trimS":
+        givenStr= givenStr.trim();
+        document.getElementById("mainStr").value=givenStr;
+        break;
+        
+        case "concatS":
+        givenStr=givenStr.concat(givenSubStr)
+
+        console.log( givenStr.concat(givenSubStr));
+        document.getElementById("mainStr").value=givenStr;
+        break;
+
+        case "replaceS":
+           givenStr= givenStr.replaceAll(givenSubStr,replaceMainStrWith);
+           document.getElementById("mainStr").value=givenStr;
+            break;
+
+        default:
+            break;
+
+
+     }
+
+
+
+
+
+
+    //   if(searchStr.checked){
+    //    console.log(givenStr.includes(givenSubStr));
+    //   }
+    //   if(convertToUpper.checked){
+    //     givenStr= givenStr.toUpperCase();
+    //     document.getElementById("mainStr").value=givenStr;
+    //     console.log(givenStr.toUpperCase())
+    //   }
+
+
+   })
+</script>
+</html>
